@@ -5,14 +5,15 @@ html(ng-app='Cronbach')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     // Angular Material style sheet
     link(rel='stylesheet', href='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css')
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.5/md-data-table.min.css")
     link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     base(href='/')
+    
   body(ng-cloak='')
     div(ng-controller='Simulator', layout='column', ng-cloak='')
-      md-toolbar(md-scroll-shrink='', ng-if='true')
-        .md-toolbar-tools
-          h3
-            span Simulator Cronbach's alpha
+      md-toolbar()
+        h3
+          span Simulator Cronbach's alpha
       md-content(flex='', style='min-height:89vh;')
         div(layout='row')
           div(flex='25', layout-margin='20')
@@ -20,15 +21,30 @@ html(ng-app='Cronbach')
               md-input-container.md-icon-float
                 label Number of Questions
                 md-icon format_list_numbered
-                input(ng-model='questions', type='number')
+                input(ng-model='questions', type='number' min="4" max="45")
+                div(style="font-size: 12px;color: grey;") Min = 4 and Max = 45
               md-input-container.md-icon-float.md-block
                 label Number of surveys
                 md-icon equalizer
-                input(ng-model='surveys', type='number')
+                input(ng-model='surveys', type='number' min="4" max="45")
+                div(style="font-size: 12px;color: grey;") Min = 4 and Max = 15
               md-button.md-raised.md-primary(ng-click='simulate()') Simular
           div(layout-margin='20', flex='')
-            md-whiteframe.md-whiteframe-1dp(flex='', layout='column', layout-align='center center', layout-padding='20')
-              | {{alpha}}
+            div(layout="row" layout-sm="column" layout-align="space-around" ng-show="alpha == 0")
+              md-progress-circular(md-mode="indeterminate")
+            md-whiteframe.md-whiteframe-1dp(flex='', layout='column' ng-show="alpha > 0")
+              md-toolbar(layout="row" layout-padding="20"  layout-align="start center")
+                span Alpha = {{alpha}}
+              md-content
+                md-list(flex)
+                  md-subheader(class="md-no-sticky") Simulations = {{intents}}
+                  md-list-item(class="md-2-line" ng-repeat="q in matrix" ng-click="null")
+                    div(class="md-list-item-text" layout="column")
+                      h3 Poll {{$index+1}}
+                      h4 {{q}}
+            
+            
+              
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js')
