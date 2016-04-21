@@ -21,13 +21,13 @@ html(ng-app='Cronbach')
               md-input-container.md-icon-float
                 label Number of Questions
                 md-icon format_list_numbered
-                input(ng-model='questions', type='number' min="4" max="45")
-                div(style="font-size: 12px;color: grey;") Min = 4 and Max = 45
+                input(ng-model='questions', type='number')
+                div(style="font-size: 12px;color: grey;")
               md-input-container.md-icon-float.md-block
                 label Number of surveys
                 md-icon equalizer
-                input(ng-model='surveys', type='number' min="4" max="45")
-                div(style="font-size: 12px;color: grey;") Min = 4 and Max = 15
+                input(ng-model='surveys', type='number')
+                div(style="font-size: 12px;color: grey;") 
               md-button.md-raised.md-primary(ng-click='simulate()') Simular
           div(layout-margin='20', flex='')
             div(layout="row" layout-sm="column" layout-align="space-around" ng-show="alpha == 0")

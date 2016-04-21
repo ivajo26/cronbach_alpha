@@ -21,6 +21,7 @@ app.post('/simulate', function(req, res) {
     matrix = CreateMatrix(req.body.questions,req.body.surveys);
     alpha = CalcularAlpha(matrix, req.body.questions,req.body.surveys);
     intent += 1;
+    console.log(intent);
   } while (alpha<0.8);
   res.json({ 'matrix': matrix, 'alpha': alpha, 'intents': intent });
 });

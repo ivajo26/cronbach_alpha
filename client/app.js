@@ -6,7 +6,6 @@ app.controller('Simulator', function($scope, $http) {
   $scope.questions;
   $scope.surveys;
   $scope.simulate = function(){
-    if ($scope.surveys >= 4 && $scope.surveys <= 15 &&  $scope.questions >= 4 && $scope.questions <= 45 ) {
       $scope.alpha = 0;
       $http.post('/simulate', { 'questions': $scope.questions, 'surveys': $scope.surveys})
       .success(function(data){
@@ -16,7 +15,6 @@ app.controller('Simulator', function($scope, $http) {
       });
       $scope.questions = '';
       $scope.surveys = '';
-    }
 
   }
 });
